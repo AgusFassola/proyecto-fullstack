@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();//para cargar variables de entorno
 const app = express();
-
+console.log("Servidor funcionando correctamente");
 //middlewares
 app.use(cors());
 app.use(express.json());
