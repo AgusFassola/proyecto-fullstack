@@ -1,0 +1,8 @@
+{
+    "env":{
+        "DB_USER": "agusfassola",
+        "DB_PASSWORD": "antesydespues",
+        "DB_NAME": "job",
+        "JWT_KEY":"supersecret_dont_share"
+    }
+}

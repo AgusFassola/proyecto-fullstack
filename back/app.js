@@ -1,10 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
-const connectDB = require('./config/db');
-const taskRoutes = require('./routes/taskRoutes');
+const bodyParser = require('body-parser');
+//const dotenv = require('dotenv');
+const connectDB = require('./src/config/db');
+const taskRoutes = require('./src/routes/taskRoutes');
 
-dotenv.config();//para cargar variables de entorno
+//dotenv.config();//para cargar variables de entorno
 
 const app = express();
 console.log("Servidor funcionando correctamente");
@@ -13,11 +14,11 @@ console.log("Servidor funcionando correctamente");
 connectDB();
 
 //middlewares
-app.use(cors());
-app.use(express.json());
+app.use(cors({ origin:'http://localhost:3000' }));
+app.use(bodyParser.json());
 
 //rutas
-app.use('/api', taskRoutes);
+app.use('/api/tasks', taskRoutes);
 
 
 //Iniciar el servidor

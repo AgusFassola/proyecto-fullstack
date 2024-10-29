@@ -5,15 +5,23 @@ exports.getTasks = async (req,res) => {
     try{
         const tasks = await Task.find();
         res.json(tasks);
+        console.log("conectado correctamente")
     }catch(err){
         res.status(500).json({ message: 'Error al obtener las tareas' });
+        console.log("error:",err)
     }
 };
 
 //crear una tarea
 exports.createTask = async (req,res) => {
+    const { title, description} = req.body;
+
+    const newTask = new Task({
+        title,
+        description
+    });
     try{
-        const newTask = new Task(req.body);
+
         await newTask.save();
         res.status(201).json(newTask);
     }catch(err){
