@@ -4,11 +4,11 @@ const bodyParser = require('body-parser');
 //const dotenv = require('dotenv');
 const connectDB = require('./src/config/db');
 const taskRoutes = require('./src/routes/taskRoutes');
+const authRoutes = require('./src/routes/authRoutes');
 
 //dotenv.config();//para cargar variables de entorno
 
 const app = express();
-console.log("Servidor funcionando correctamente");
 
 // Conectar a la base de datos
 connectDB();
@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 
 //rutas
 app.use('/api/tasks', taskRoutes);
+app.use('/api/auth', authRoutes);
 
 
 //Iniciar el servidor

@@ -11,7 +11,7 @@ const TaskList = () => {
 
   const fetchTasks = async () =>{
     try{
-      const response = await axios.get('Http://localhost:5000/api/tasks');
+      const response = await axios.get('http://localhost:5000/api/tasks');
       setTasks(response.data);
     }catch(err){
       console.error('Error al obtener tareas:', err);
@@ -20,7 +20,7 @@ const TaskList = () => {
 
   const deleteTask = async (id) =>{
     try{
-      await axios.delete(`Http://localhost:5000/api/tasks/${id}`);
+      await axios.delete(`http://localhost:5000/api/tasks/${id}`);
       fetchTasks();//refrescar despues de eliminar
     }catch(err){
       console.error('Error al eliminar la tarea:', err);

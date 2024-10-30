@@ -3,8 +3,29 @@ const Task = require('../models/Task');
 //obtener todas las tareas
 exports.getTasks = async (req,res) => {
     try{
-        const tasks = await Task.find();
-        res.json(tasks);
+        const { page=1, limit=10, search='', sort='asc'} = req.query;
+
+        const query = {
+            $or:[{ 
+                    title:{ $regex: search, $options: 'i'}
+                },{
+                    description: { $regex: search, $options: 'i'}
+            }]
+        };
+
+        const tasks = await Task.find( query )
+        .sort({ title: sort === 'asc' ? 1 : -1})
+        .limit( limit * 1 )
+        .skip(( page - 1 ) * limit);
+
+        const total = await Task.countDocuments(query);
+
+        res.json({
+            tasks,
+            total,
+            totalPages: Math.ceil( total/limit ),
+            currentPage: page
+        });
         console.log("conectado correctamente")
     }catch(err){
         res.status(500).json({ message: 'Error al obtener las tareas' });
