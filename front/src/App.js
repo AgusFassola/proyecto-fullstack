@@ -8,16 +8,17 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <Router>
-      <Navbar />
-        <div className='container'>
-            <h1>Administrador de tareas</h1>
+      <div className='min-h-screen bg-gray-100'>
+        <Navbar />
+        <div className='container mx-auto p-8'>
             <Routes>
                 <Route path="/" element={<TaskList/>}/>
                 <Route path="/create" element={<CreateTask/>}/>
             </Routes>
         </div>
+      </div>
     </Router>
-  )
+  );
 }
 
 export default App;

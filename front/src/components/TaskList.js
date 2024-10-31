@@ -29,29 +29,34 @@ const TaskList = () => {
 
   return (
     <div className='container mx-auto p-6'>
-      <h1 className='text-3x1 front-bold mb-4'>Lista de tareas</h1>
-      <Link to="/create">
-        <button className='bg-blue-500 hover:bg-blue-700 text-white front-bold py-2 px-4 rounded mb-4'>
-          Nueva tarea
-        </button>
-      </Link>
-      <ul className='space-y-4'>
+      <h1 className='text-4x1 front-extrabold text-center mb-8 text-gray-800'>
+        Lista de tareas
+      </h1>
+      <div className='flex justify-end mb-6'>
+        <Link to="/create">
+          <button className='bg-green-500 hover:bg-green-600 text-white front-bold py-2 px-4 rounded mb-4'>
+            Nueva tarea
+          </button>
+        </Link>
+      </div>
+      <div className='grid grid-cols-1 md:grid-cols-2 pag-6'>
         {tasks.map((task) => (
-          <li
+          <div
             key={task._id}
-            className='flex justify-between items-center p-4 bg-gray-100 rounded shadow'
+            className='p-4 bg-white rounded shadow-md hover:shadow-lg transition'
           >
-            <div>
-              <h2 className='text-xl font-semibold'>{task.title}</h2>
-              <p className='text-gray-700'>{task.description}</p>
+            <h2 className='text-xl font-semibold mb-2'>{task.title}</h2>
+            <p className='text-gray-600 mb-4'>{task.description}</p>
+            <div className='flex justify-end'>
+              <button 
+                className='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded'
+                onClick={() => deleteTask(task._id)}>
+                Eliminar
+              </button>
             </div>
-            
-            <button 
-              className='bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded'
-              onClick={() => deleteTask(task._id)}>Eliminar</button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
