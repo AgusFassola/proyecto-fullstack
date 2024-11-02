@@ -8,7 +8,7 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <Router>
-      <div className='min-h-screen bg-gray-100'>
+      <div className='min-h-screen bg-gray-400'>
         <Navbar />
         <div className='container mx-auto p-8'>
             <Routes>
