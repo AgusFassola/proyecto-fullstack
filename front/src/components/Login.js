@@ -11,6 +11,8 @@ const Login = () => {
         e.preventDefault();
         try{
             const response = await axios.post('http://localhost:5000/api/auth/login', { username, password });
+            console.log("data:",response.data)
+            localStorage.setItem('token', response.data.token);
             const {role} = response.data;
             if ( role === 'admin' ){
                 navigate('/admin');
@@ -19,6 +21,7 @@ const Login = () => {
             }
         }catch (err) {
             console.error('Error de autenticación:', err);
+            alert('usuario o contraseña incorrectos')
         }
     };
 
