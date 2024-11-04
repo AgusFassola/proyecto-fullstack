@@ -11,7 +11,20 @@ const CreateTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      await axios.post('http://localhost:5000/api/tasks/create', { title, description });
+      const token = localStorage.getItem('token');
+
+      const config = {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      };
+
+      const response = await axios.post(
+        'http://localhost:5000/api/tasks/create',
+         { title, description },
+          config
+      );
+      
       navigate('/');//redirigir a las tareas
     }catch(err){
       console.error('Error al crear tarea:', err);
