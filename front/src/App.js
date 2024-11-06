@@ -3,6 +3,8 @@ import TaskList from './components/task/TaskList';
 import CreateTask from './components/task/CreateTask';
 import Navbar from './components/Navbar';
 import Login from './components/Login';
+import CreateUser from './components/CreateUser';
+import EditTask from './components/task/EditTask';
 
 
 function App() {
@@ -12,9 +14,11 @@ function App() {
         <Navbar />
         <div className='container mx-auto p-8'>
             <Routes>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/" element={<TaskList/>}/>
-                <Route path="/create" element={<CreateTask/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/" element={<TaskList/>}/>
+              <Route path="/create" element={<CreateTask/>}/>
+              <Route path="/edit/${id}" element={<CreateTask/>}/>
+              <Route path="/createUser" element={<CreateUser/>}/>
             </Routes>
         </div>
       </div>

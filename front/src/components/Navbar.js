@@ -1,6 +1,26 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import jwt_decode from 'jwt-decode';
+import { useState, useEffect } from 'react';
 
 const Navbar = () => {
+    const [ userRole, setUserRole ] = useState(null);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if(token){
+            const decoded = jwt_decode(token);
+            setUserRole(decoded.role);
+        }
+    }, []);
+    
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        navigate('/login');
+    };
+
     return (
         <nav className='ng-gradient-to-r from-blue-500 to-indigo-600 p-4 shadow-lg'>
             <div className='container mx-auto flex justify-between items-center'>
@@ -16,9 +36,16 @@ const Navbar = () => {
                     <Link to="/create" className='text-white hover:text-gray-300 transition'>
                         Crear tarea
                     </Link>
-                    <Link to="/login" className='text-white hover:text-gray-300 transition'>
-                        Log out
-                    </Link>
+                    { userRole === 'admin' && (
+                        <>
+                            <button onClick={() => navigate('/createUser')}>
+                                Crear Usuario
+                            </button>
+                        </>
+                    )}
+                    {localStorage.getItem('token') && (
+                        <button onClick={handleLogout}>Cerrar Sesión</button>
+                    )}
                 </div>
             </div>
         </nav>

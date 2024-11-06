@@ -1,7 +1,6 @@
 import { useEffect, useState} from 'react';
 import { getTasks, deleteTask } from './taskService';
-import { Link } from 'react-router-dom';
-import {useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
@@ -49,6 +48,10 @@ const TaskList = () => {
       }
     }
   };
+
+  const hanldeEdit = (id) => {
+    navigate(`/edit/${id}`);
+  };
   
 
   return (
@@ -86,6 +89,11 @@ const TaskList = () => {
             <h2 className='text-xl font-semibold mb-2'>{task.title}</h2>
             <p className='text-gray-600 mb-4'>{task.description}</p>
             <div className='flex justify-end'>
+            <button 
+                className='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded'
+                onClick={() => handleEdit(task._id)}>
+                Eliminar
+              </button>
               <button 
                 className='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded'
                 onClick={() => handleDelete(task._id)}>

@@ -20,6 +20,15 @@ export  const createTask = async (taskData) =>{
     return response.data;
 }; 
 
+export const getTaskById = async (id) =>{
+    try{
+        const response = await axios.get(`http://localhost:5000/api/tasks/${id}`);
+        return response.data;
+    }catch(err){
+        throw err;
+    }
+}
+
 export  const deleteTask = async (id) =>{
     const response = await axios.delete(`http://localhost:5000/api/tasks/${id}`,{
         headers: getAuthHeader(),
