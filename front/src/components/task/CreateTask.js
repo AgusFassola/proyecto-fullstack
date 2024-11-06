@@ -24,7 +24,7 @@ const CreateTask = () => {
          { title, description },
           config
       );
-      
+      console.log('tarea creada: ', response.data)
       navigate('/');//redirigir a las tareas
     }catch(err){
       console.error('Error al crear tarea:', err);

@@ -16,6 +16,9 @@ const Navbar = () => {
                     <Link to="/create" className='text-white hover:text-gray-300 transition'>
                         Crear tarea
                     </Link>
+                    <Link to="/login" className='text-white hover:text-gray-300 transition'>
+                        Log out
+                    </Link>
                 </div>
             </div>
         </nav>
