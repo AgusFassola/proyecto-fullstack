@@ -49,7 +49,7 @@ const TaskList = () => {
     }
   };
 
-  const hanldeEdit = (id) => {
+  const handleEdit = (id) => {
     navigate(`/edit/${id}`);
   };
   
@@ -92,7 +92,7 @@ const TaskList = () => {
             <button 
                 className='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded'
                 onClick={() => handleEdit(task._id)}>
-                Eliminar
+                Editar
               </button>
               <button 
                 className='bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded'

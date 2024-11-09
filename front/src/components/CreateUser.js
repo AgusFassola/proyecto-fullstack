@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import axios from 'axios';
 
 const CreateUser = () => {
     const [username, setUsername] = useState('');

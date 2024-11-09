@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import React from 'react';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import { useState, useEffect } from 'react';
 
 const Navbar = () => {
@@ -9,7 +9,7 @@ const Navbar = () => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if(token){
-            const decoded = jwt_decode(token);
+            const decoded = jwtDecode(token);
             setUserRole(decoded.role);
         }
     }, []);
