@@ -5,12 +5,23 @@ import { getTaskById, updateTask } from './taskService';
 const EditTask = () => {
     const {id} = useParams();
     const [task, setTask] = useState({ title: '', description: ''});
+    const [loading, setLoading] = useState(true); 
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchTasks = async() =>{
-            const taskData = await getTaskById(id);
-            setTask(taskData);
+            try{
+                const taskData = await getTaskById(id);
+                if(taskData){
+                    setTask(taskData);
+                }else {
+                    console.log("tarea no encontrada")
+                }
+            }catch(err){
+                console.log("Error al obtener la tarea: ",err)
+            }finally{
+                setLoading(false);
+            }
         };
         fetchTasks();
     },[id]);
@@ -25,6 +36,9 @@ const EditTask = () => {
         await updateTask(id, task);
         navigate('/');
     };
+    if(loading){
+        return <div>Cargando...</div>
+    }
 
   return (
     <div className='container mx-auto p-8'>

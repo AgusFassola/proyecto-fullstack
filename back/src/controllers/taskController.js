@@ -33,6 +33,17 @@ exports.getTasks = async (req,res) => {
     }
 };
 
+
+exports.getTaskById = async ( id ) => {
+    try{
+        const task = await Task.findById(req.params.id)
+        if(!task){
+            return res.status(404).json({ message: 'Tarea no encontrada' });
+        }
+    }catch(err){
+        res.status(500).json({ message: 'Error al obtener la tarea' });
+    }
+};
 //crear una tarea
 exports.createTask = async (req,res) => {
     const { title, description} = req.body;

@@ -50,7 +50,7 @@ const TaskList = () => {
   };
 
   const handleEdit = (id) => {
-    navigate(`/edit/${id}`);
+    navigate(`/${id}`);
   };
   
 

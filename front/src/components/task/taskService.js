@@ -25,7 +25,7 @@ export const getTaskById = async (id) =>{
         const response = await axios.get(`http://localhost:5000/api/tasks/${id}`);
         return response.data;
     }catch(err){
-        throw err;
+        console.log("error en getTaskById: ",err);
     }
 }
 
@@ -37,7 +37,7 @@ export  const deleteTask = async (id) =>{
 }; 
 
 export  const updateTask = async (id, taskData) =>{
-    const response = await axios.put(`http://localhost:5000/api/tasks${id}`, taskData, {
+    const response = await axios.put(`http://localhost:5000/api/tasks/${id}`, taskData, {
         headers: getAuthHeader(),
     } );
     return response.data;
