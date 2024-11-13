@@ -1,18 +1,29 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import React from 'react';
 import { jwtDecode } from 'jwt-decode';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Navbar = () => {
     const [ userRole, setUserRole ] = useState(null);
+    const location = useLocation();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if(token){
-            const decoded = jwtDecode(token);
-            setUserRole(decoded.role);
+            try{
+                const decoded = jwtDecode(token);
+                setUserRole(decoded.role);
+            }catch (error) {
+                console.error('Error al decodificar el token:', error);
+            }
+            
         }
     }, []);
+
+     // Ocultar Navbar en la página de login
+     if (location.pathname === '/login') {
+        return null;
+    }
     
     const navigate = useNavigate();
 
