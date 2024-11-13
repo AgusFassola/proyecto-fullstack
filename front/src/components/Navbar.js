@@ -1,7 +1,7 @@
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import React from 'react';
 import { jwtDecode } from 'jwt-decode';
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+
 
 const Navbar = () => {
     const [ userRole, setUserRole ] = useState(null);
@@ -20,10 +20,7 @@ const Navbar = () => {
         }
     }, []);
 
-     // Ocultar Navbar en la página de login
-     if (location.pathname === '/login') {
-        return null;
-    }
+    
     
     const navigate = useNavigate();
 
@@ -32,6 +29,10 @@ const Navbar = () => {
         navigate('/login');
     };
 
+     // Ocultar Navbar en la página de login
+     if (location.pathname === '/login') {
+        return null;
+    }
     return (
         <nav className='ng-gradient-to-r from-blue-500 to-indigo-600 p-4 shadow-lg'>
             <div className='container mx-auto flex justify-between items-center'>
