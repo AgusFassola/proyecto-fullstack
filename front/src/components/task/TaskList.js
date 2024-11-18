@@ -64,15 +64,16 @@ const TaskList = () => {
       <h1 className='text-4x1 front-extrabold text-center mb-8 text-white'>
         Lista de tareas
       </h1>
-      <div className='flex flex-col md:flex-row justify-between mb-6 items-center'>
-      <input
-          type="text"
-          placeholder="Buscar..."
-          value={search}
-          onChange={handleSearch}
-          className="border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        />
+      <div className='flex flex-col md:flex-row justify-center mb-6 items-center'>
+      
         <div className='felx items-center space-x-4'>
+          <input
+            type="text"
+            placeholder="Buscar..."
+            value={search}
+            onChange={handleSearch}
+            className="border px-4 py-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
           <button
             className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition"
             onClick={toggleSort}
@@ -90,11 +91,11 @@ const TaskList = () => {
       { loading ? (
         <div className='text-center text-white'>Cargando tareas...</div>
       ):(
-        <div className='grid grid-cols-1 md:grid-cols-2 pag-6'>
+        <div className='flex flex-col items-center justify-center min-h-screen space-y-4'>
           {tasks.map((task) => (
             <div
               key={task._id}
-              className='p-4 bg-white rounded shadow-md hover:shadow-lg transition'
+              className='max-w-md w-full p-4 bg-white rounded shadow-md hover:shadow-lg transition'
             >
               <h2 className='text-xl font-semibold mb-2'>{task.title}</h2>
               <p className='text-gray-700 mb-4'>{task.description}</p>

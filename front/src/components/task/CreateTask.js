@@ -31,37 +31,47 @@ const CreateTask = () => {
     }
   };
 
+  const handleCancel = () =>{
+    navigate('/');
+}
+
   return (
-    <div className='container mx-auto p-8'>
-      <form onSubmit={handleSubmit} className='bg-white p-8 rounded shadow-md'>
-        <h2 className='text-2x1 font-bold mb-6 text-gray-800'>Crear nueva tarea</h2>
-        <div className='mb-4'>
-          <label className='block text-gray-700 mb-2'>Titulo:</label>
-          <input
-            type='text'
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            placeholder='Ingrese un título'
-          />
-        </div>
-        <div className='mb-4 '>
-          <label className='block text-gray-700 font-medium mb-2'> 
-            Descripción
-          </label>
-          <textarea 
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className='w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none'
-            placeholder='Ingrese una descripción'
-          />
-        </div>
-        <button 
-          type="submit" 
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition w-full">
-          Crear Tarea
-        </button>
-      </form>
+    <div className='flex min-h-screen justify-center items-center'>
+      <div className='max-w-lg w-full bg-white p-8 rounded-lg shadow-lg mt-[-10%]'>
+        <form onSubmit={handleSubmit} className='bg-white p-8 rounded shadow-md'>
+          <h2 className='text-2x1 font-bold mb-6 text-gray-800'>Crear nueva tarea</h2>
+          <div className='mb-4'>
+            <label className='block text-gray-700 mb-2'>Titulo:</label>
+            <input
+              type='text'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder='Ingrese un título'
+            />
+          </div>
+          <div className='mb-4 '>
+            <label className='block text-gray-700 font-medium mb-2'> 
+              Descripción
+            </label>
+            <textarea 
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className='w-full px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500 focus:outline-none'
+              placeholder='Ingrese una descripción'
+            />
+          </div>
+          <button
+                    onClick={handleCancel}
+                    className='bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
+                >Cancelar</button>
+          <button 
+            type="submit" 
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition">
+            Crear Tarea
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
