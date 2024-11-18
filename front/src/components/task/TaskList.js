@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getTasks, deleteTask } from './taskService';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -12,12 +12,9 @@ const TaskList = () => {
   const navigate = useNavigate();
   const [ loading, setLoading ] = useState(true);
 
-  useEffect(() => {
-    fetchTasks();
-  },[search, page, sort]);
 
 
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback( async () => {
     setLoading(true);
     try{
       const data = await getTasks({ page, limit, search, sort });
@@ -31,7 +28,12 @@ const TaskList = () => {
       }
     }
     setLoading(false);
-  };
+  },[search, page, sort]);
+
+  useEffect(() => {
+    fetchTasks();
+  },[fetchTasks]);
+
 
 
   const handleSearch = (e) => {
@@ -66,7 +68,7 @@ const TaskList = () => {
       </h1>
       <div className='flex flex-col md:flex-row justify-center mb-6 items-center'>
       
-        <div className='felx items-center space-x-4'>
+        <div className='flex items-center space-x-4'>
           <input
             type="text"
             placeholder="Buscar..."

@@ -20,7 +20,7 @@ const Navbar = () => {
         }
     }, []);
 
-    
+    console.log("rol:", userRole)
     
     const navigate = useNavigate();
 
@@ -42,21 +42,23 @@ const Navbar = () => {
                     </span>
                 </Link>
                 <div className='space-x-6'>
-                    <Link to="/" className='text-white hover:text-gray-300 transition'>
+                    <Link to="/" className='text-white hover:text-gray-800 transition'>
                         Home
                     </Link>
-                    <Link to="/create" className='text-white hover:text-gray-300 transition'>
+                    <Link to="/create" className='text-white hover:text-gray-800 transition'>
                         Crear tarea
                     </Link>
                     { userRole === 'admin' && (
                         <>
-                            <button onClick={() => navigate('/createUser')}>
+                            <button 
+                                className='text-white hover:text-gray-800 transition'
+                                onClick={() => navigate('/createUser')}>
                                 Crear Usuario
                             </button>
                         </>
                     )}
                     {localStorage.getItem('token') && (
-                        <button onClick={handleLogout}>Cerrar Sesión</button>
+                        <button className='text-white hover:text-gray-800 transition' onClick={handleLogout}>Cerrar Sesión</button>
                     )}
                 </div>
             </div>

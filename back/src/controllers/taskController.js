@@ -26,7 +26,7 @@ exports.getTasks = async (req,res) => {
             totalPages: Math.ceil( total/limit ),
             currentPage: page
         });
-        console.log("conectado correctamente")
+        
     }catch(err){
         res.status(500).json({ message: 'Error al obtener las tareas' });
         console.log("error:",err)
